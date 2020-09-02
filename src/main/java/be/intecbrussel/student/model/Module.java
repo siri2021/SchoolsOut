@@ -11,10 +11,51 @@ public class Module {
     private String name;
     @Lob
     private String description ;
-@ManyToOne
+    @ManyToOne
     public Course course ;
 
 
-  @OneToMany(mappedBy = "module")
+    @OneToMany(mappedBy = "module")
     private List<Exam> exams ;
+
+    public String getName() {
+        return name;
+    }
+
+    public Module setName(String name) {
+        this.name = name;
+        return this;
+
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Module setDescription(String description) {
+        this.description = description;
+        return this;
+
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public Module setCourse(Course course) {
+        this.course = course;
+        return this;
+
+    }
+
+    public List<Exam> getExams() {
+        return exams;
+    }
+
+    public Module setExams(List<Exam> exams) {
+        this.exams = exams;
+        return this;
+    }
+
+
 }

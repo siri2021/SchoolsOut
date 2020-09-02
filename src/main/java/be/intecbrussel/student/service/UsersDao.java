@@ -5,37 +5,22 @@ import be.intecbrussel.student.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import java.util.List;
-import java.util.Optional;
 
+public class UsersDao {
 
-public class UserDao implements DaoInterface<User> {
+    EntityManagerFactory emf= EntityFactoryGenerator.generator();
 
-EntityManagerFactory emf=EntityFactoryGenerator.generator();
-
-   @Override
-    public Optional get(String s) {
+    public User get(String id) {
+        System.out.println(id);
         EntityManager entityManager=emf.createEntityManager();
-        return Optional.ofNullable(entityManager.find(User.class, s));
-   }
-
-   @Override
-    public Optional get(long id) {
-        EntityManager entityManager=emf.createEntityManager();
-        return Optional.ofNullable(entityManager.find(User.class, id ));
-
+        System.out.println(id);
+        User user1=entityManager.find(User.class, id);
+        System.out.println(user1);
+        return user1;
     }
 
-
-    @Override
-    public List getAll() {
-        return null;
-    }
-
-
-
-    @Override
     public void save(User user) {
+
         EntityManager em=emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
@@ -43,7 +28,7 @@ EntityManagerFactory emf=EntityFactoryGenerator.generator();
         et.commit();
     }
 
-    @Override
+
     public void update( User user){
         EntityManager em=emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
@@ -52,7 +37,7 @@ EntityManagerFactory emf=EntityFactoryGenerator.generator();
         et.commit();
     }
 
-    @Override
+
     public void delete(User user) {
         EntityManager em=emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
@@ -60,7 +45,4 @@ EntityManagerFactory emf=EntityFactoryGenerator.generator();
         em.remove(user);
         et.commit();
     }
-
-
-
 }
