@@ -1,5 +1,5 @@
 package be.intecbrussel.student.service;
 
-public class courseService {
+public class CourseDao {
 
 }
