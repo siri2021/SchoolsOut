@@ -5,6 +5,8 @@ import javax.persistence.*;
 @Entity
 @Table(name="person")
 public class Person {
+
+
     @Id
     @GeneratedValue
     private Integer id;
@@ -12,6 +14,8 @@ public class Person {
     private String familyName;
     @Enumerated(EnumType.STRING)
     private GENDER gender;
+    @ManyToOne
+    private Course course;
 
     @Override
     public String toString() {
@@ -24,8 +28,11 @@ public class Person {
                 '}';
     }
 
-    @ManyToOne
-    private Course course;
+
+
+    public Integer getId() {
+        return id;
+    }
 
     public String getFirstName() {
         return firstName;

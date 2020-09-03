@@ -20,7 +20,7 @@ EntityManagerFactory emf=EntityFactoryGenerator.generator();
    }
 
    @Override
-    public Optional get(long id) {
+    public Optional get(Integer id) {
         EntityManager entityManager=emf.createEntityManager();
         return Optional.ofNullable(entityManager.find(User.class, id ));
 
@@ -57,7 +57,7 @@ EntityManagerFactory emf=EntityFactoryGenerator.generator();
         EntityManager em=emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.remove(user);
+        em.remove(em.contains(user) ? user : em.merge(user));
         et.commit();
     }
 

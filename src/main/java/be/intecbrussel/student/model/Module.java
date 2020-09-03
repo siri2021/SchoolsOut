@@ -7,7 +7,7 @@ import java.util.List;
 public class Module {
     @Id
     @GeneratedValue
-    private Long id;
+    private Integer id;
     private String name;
     @Lob
     private String description ;
@@ -17,6 +17,10 @@ public class Module {
 
     @OneToMany(mappedBy = "module")
     private List<Exam> exams ;
+
+    public Integer getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

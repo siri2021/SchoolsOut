@@ -12,13 +12,11 @@ public class PersonApplication {
     private static PersonDao personDao=new PersonDao();
 
     public static void main(String[] args) {
-        Person person1=new Person().setFirstName("Prasanna").setFamilyName("Kulkarni").setGender(GENDER.MALE)
-                .setCourse(new Course().setName("MBA").setActive(true).setDescription("management")
-                        .setCode("IIM_A"));
+        Person person1=new Person().setFirstName("Shravan").setFamilyName("Kulkarni").setGender(GENDER.MALE);
         System.out.println(person1);
         savePerson(person1);
-      //  Person person2= getPerson(1);
-        //deletePerson(person2);
+        Person person2= getPerson(9);
+        deletePerson(person2);
         //updatePerson(getPerson(2));
 
 
@@ -28,7 +26,7 @@ public class PersonApplication {
         personDao.delete(person);
     }
 
-    private static Person getPerson(long id) {
+    private static Person getPerson(Integer id) {
         Optional<Person> user = personDao.get(id);
         return user.orElseGet(
                 () -> new Person());
@@ -46,12 +44,15 @@ public class PersonApplication {
 public static void updatePerson(Person personToBeUpdated) {
         //find User TO BE replaced
         Person PersonToBeReplaced=getPerson(2);
-        Person newPerson=new Person().setFirstName("Tanmay").setFamilyName("Kulkarni").setGender(GENDER.MALE)
-                .setCourse(new Course().setName("Medicine").setActive(true).setCode("ANATOMY112").setDescription("year1")) ;
+        Person newPerson=new Person().setFirstName("Tanmay").setFamilyName("Kulkarni").setGender(GENDER.MALE);
+
         personDao.update(newPerson);
         }
 
 
 
+//new Course().setName("MBA").setActive(true).setDescription("management")
+            //            .setCode("IIM_A")
 
+    //.setCourse(new Course().setName("Medicine").setActive(true).setCode("ANATOMY112").setDescription("year1")) ;
 }

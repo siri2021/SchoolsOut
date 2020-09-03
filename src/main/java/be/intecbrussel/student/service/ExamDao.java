@@ -1,66 +1,69 @@
 package be.intecbrussel.student.service;
 
-import be.intecbrussel.student.model.Course;
+
 import be.intecbrussel.student.model.Exam;
-import be.intecbrussel.student.model.GENDER;
-import be.intecbrussel.student.model.Person;
-//need to make changes
+
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import java.util.List;
 import java.util.Optional;
 
-public class ExamDao {
-    private static ExamDao examDao=new ExamDao();
+public class ExamDao implements DaoInterface<Exam> {
+    EntityManagerFactory emf=EntityFactoryGenerator.generator();
 
-    public static void main(String[] args) {
-        Exam exam1=new Exam(). ;
-        System.out.println(exam1);
-        saveExam(exam1);
-        Exam exam2= getExam(1);
+    @Override
+    public Optional get(String s) {
+        EntityManager entityManager=emf.createEntityManager();
+        return Optional.ofNullable(entityManager.find(Exam.class, s));
+    }
 
-        deleteExam(exam2);
-        updateExam(getExam(3);
-
+    @Override
+    public Optional get(Integer id) {
+        EntityManager entityManager=emf.createEntityManager();
+        return Optional.ofNullable(entityManager.find(Exam.class, id ));
 
     }
 
-    private static void updateExam(Exam exam) {
-    }
 
-    private static void deleteExam(Exam exam2) {
-    }
-
-    private static Exam getExam(int i) {
+    @Override
+    public List getAll() {
         return null;
     }
 
-    private static void saveExam(Exam exam1) {
+
+
+    @Override
+    public void save(Exam exam) {
+        EntityManager em=emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        em.persist(exam);
+        et.commit();
     }
 
-  /*  private static void deletePerson(Person person) {
-        personDao.delete(person);
+    @Override
+    public void update( Exam exam){
+        EntityManager em=emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        em.merge(exam);
+        et.commit();
     }
 
-    private static Person getPerson(long id) {
-        Optional<Person> user = personDao.get(id);
-        return user.orElseGet(
-                () -> new Person());
+    @Override
+    public void delete(Exam exam) {
+        EntityManager em=emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        em.remove(em.contains(exam) ? exam : em.merge(exam));
+        et.commit();
     }
 
-    private static void savePerson(Person person) {
-        personDao.save(person);
-    }
 
 
 
-
-
-
-    public static void updatePerson(Person personToBeUpdated) {
-        //find User TO BE replaced
-        Person PersonToBeReplaced=getPerson(2);
-        Person newPerson=new Person().setFirstName("Tanmay").setFamilyName("Kulkarni").setGender(GENDER.MALE)
-                .setCourse(new Course().setName("Medicine").setActive(true).setCode("ANATOMY112").setDescription("year1")) ;
-        personDao.update(newPerson);
-    }*/
 
 
 

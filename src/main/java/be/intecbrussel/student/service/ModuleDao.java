@@ -1,12 +1,13 @@
 package be.intecbrussel.student.service;
 
 import be.intecbrussel.student.model.User;
-
+import be.intecbrussel.student.model.Module;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import java.util.List;
 import java.util.Optional;
+
 
 public class ModuleDao implements DaoInterface<Module> {
     EntityManagerFactory emf=EntityFactoryGenerator.generator();
@@ -19,7 +20,7 @@ public class ModuleDao implements DaoInterface<Module> {
     }
 
     @Override
-    public Optional get(long id) {
+    public Optional get(Integer id) {
         EntityManager entityManager=emf.createEntityManager();
         return Optional.ofNullable(entityManager.find(Module.class, id ));
 
@@ -56,7 +57,7 @@ public class ModuleDao implements DaoInterface<Module> {
         EntityManager em=emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.remove(module);
+        em.remove(em.contains(module) ? module : em.merge(module));
         et.commit();
     }
 

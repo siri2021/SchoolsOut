@@ -21,7 +21,7 @@ public class PersonDao implements DaoInterface<Person> {
     }
 
     @Override
-    public Optional get(long id) {
+    public Optional get(Integer id) {
         EntityManager entityManager=emf.createEntityManager();
         return Optional.ofNullable(entityManager.find(Person.class, id ));
 
@@ -59,7 +59,7 @@ public class PersonDao implements DaoInterface<Person> {
         EntityManager em=emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.remove(person);
+        em.remove(em.contains(person) ? person : em.merge(person));
         et.commit();
     }
 

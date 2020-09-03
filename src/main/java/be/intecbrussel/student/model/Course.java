@@ -8,7 +8,7 @@ import java.util.List;
 public class Course {
     @Id
     @GeneratedValue()
-    private Long id ;
+    private Integer id ;
     private  String name;
     @Lob
     private String description ;
@@ -18,7 +18,9 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Module> modules;
 
-
+    public Integer getId() {
+        return id;
+    }
     public String getName() {
         return name;
     }

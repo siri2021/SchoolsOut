@@ -23,7 +23,7 @@ public class CourseDao implements DaoInterface<Course> {
     }
 
     @Override
-    public Optional get(long id) {
+    public Optional get(Integer id) {
         EntityManager entityManager=emf.createEntityManager();
         return Optional.ofNullable(entityManager.find(Course.class, id ));
 
@@ -60,7 +60,7 @@ public class CourseDao implements DaoInterface<Course> {
         EntityManager em=emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.remove(course);
+        em.remove(em.contains(course) ? course : em.merge(course));
         et.commit();
     }
 

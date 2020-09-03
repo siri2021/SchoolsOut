@@ -21,18 +21,16 @@ public class CourseApplication {
         deleteCourse(getCourse(1));
         //getAllUsers().forEach(user -> System.out.println(user.getName()));
     }
-    public static Course getCourse(long id) {
+
+    public static Course getCourse(Integer id) {
         Optional<Course> course = courseDao.get(id);
         return course.orElseGet(
                 () -> new Course());
     }
 
-
-
-
     public static void updateCourse(Course courseToBeUpdated) {
         //find course TO BE replaced
-        Course  CourseToBeReplaced=getCourse(1);
+        Course  CourseToBeReplaced=getCourse(courseToBeUpdated.getId());
         Course newCourse=new Course().setName("Masres").setCode("stats#1").setDescription("statistics for MachineLEARNING").setActive(true);
                 courseDao.update(newCourse);
     }

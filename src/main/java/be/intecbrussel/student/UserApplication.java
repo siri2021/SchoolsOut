@@ -7,17 +7,17 @@ import java.util.Optional;
 
 public class UserApplication {
 
-
         private static UserDao userDao=new UserDao();
 
         // standard constructors
 
         public static void main(String[] args) {
-            User user1 = getUser("siri");
-            System.out.println(user1);
-            updateUser(user1);
-            saveUser(new User().setLogin("tanmay").setActive(false).setPassword("sammu"));
-            deleteUser(getUser("pearl"));
+           // User user1 = getUser("diya");
+            //System.out.println(user1);
+            //updateUser(user1);
+            //saveUser(new User().setLogin("pavani").setActive(false).setPassword("chandu"));
+
+            deleteUser(getUser("pearl2"));
            //getAllUsers().forEach(user -> System.out.println(user.getName()));
         }
     public static User getUser(String id) {
@@ -32,7 +32,7 @@ public class UserApplication {
         public static void updateUser(User userToBeUpdated) {
             //find User TO BE replaced
             User UserToBeReplaced=getUser("shushan");
-            User newUser=new User().setLogin("diana").setActive(false).setPassword("vidu");
+            User newUser=new User().setLogin("prasanna").setActive(false).setPassword("vinod");
             userDao.update(newUser);
         }
 
