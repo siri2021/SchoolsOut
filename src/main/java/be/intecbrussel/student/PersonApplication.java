@@ -1,10 +1,8 @@
 package be.intecbrussel.student;
 
-import be.intecbrussel.student.model.Course;
 import be.intecbrussel.student.model.GENDER;
 import be.intecbrussel.student.model.Person;
-import be.intecbrussel.student.model.User;
-import be.intecbrussel.student.service.PersonDao;
+import be.intecbrussel.student.repos.PersonDao;
 
 import java.util.Optional;
 
@@ -12,10 +10,10 @@ public class PersonApplication {
     private static PersonDao personDao=new PersonDao();
 
     public static void main(String[] args) {
-        Person person1=new Person().setFirstName("Shravan").setFamilyName("Kulkarni").setGender(GENDER.MALE);
+        Person person1=new Person().setFirstName("Sughosh").setFamilyName("Kulkarni").setGender(GENDER.MALE);
         System.out.println(person1);
         savePerson(person1);
-        Person person2= getPerson(9);
+        Person person2= getPerson(25l);
         deletePerson(person2);
         //updatePerson(getPerson(2));
 
@@ -26,7 +24,7 @@ public class PersonApplication {
         personDao.delete(person);
     }
 
-    private static Person getPerson(Integer id) {
+    private static Person getPerson(Long id) {
         Optional<Person> user = personDao.get(id);
         return user.orElseGet(
                 () -> new Person());
@@ -43,7 +41,7 @@ public class PersonApplication {
 
 public static void updatePerson(Person personToBeUpdated) {
         //find User TO BE replaced
-        Person PersonToBeReplaced=getPerson(2);
+        Person PersonToBeReplaced=getPerson(2L);
         Person newPerson=new Person().setFirstName("Tanmay").setFamilyName("Kulkarni").setGender(GENDER.MALE);
 
         personDao.update(newPerson);

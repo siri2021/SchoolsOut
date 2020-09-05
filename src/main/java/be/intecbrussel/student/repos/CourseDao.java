@@ -1,9 +1,6 @@
-package be.intecbrussel.student.service;
+package be.intecbrussel.student.repos;
 
 import be.intecbrussel.student.model.Course;
-import be.intecbrussel.student.model.Course;
-import be.intecbrussel.student.service.DaoInterface;
-import be.intecbrussel.student.service.EntityFactoryGenerator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,7 +20,7 @@ public class CourseDao implements DaoInterface<Course> {
     }
 
     @Override
-    public Optional get(Integer id) {
+    public Optional get(Long id) {
         EntityManager entityManager=emf.createEntityManager();
         return Optional.ofNullable(entityManager.find(Course.class, id ));
 

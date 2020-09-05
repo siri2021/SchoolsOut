@@ -1,4 +1,4 @@
-package be.intecbrussel.student.service;
+package be.intecbrussel.student.repos;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

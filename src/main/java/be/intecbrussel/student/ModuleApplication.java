@@ -1,11 +1,8 @@
 package be.intecbrussel.student;
 
 import be.intecbrussel.student.model.Course;
-import be.intecbrussel.student.model.GENDER;
 import be.intecbrussel.student.model.Module;
-import be.intecbrussel.student.model.Person;
-import be.intecbrussel.student.service.CourseDao;
-import be.intecbrussel.student.service.ModuleDao;
+import be.intecbrussel.student.repos.ModuleDao;
 //need to make changes
 import java.util.Optional;
 
@@ -16,17 +13,18 @@ public class ModuleApplication {
 
     public static void main(String[] args) {
 
-        Module module1=new Module().setName("mod#1").setDescription("Science");
+        Module module1=new Module().setName("mod#é25").setDescription("DYNAMICS")
+                .setCourse(new Course().setActive(true).setName("ThermoDynamics"));
         System.out.println(module1);
         saveModule(module1);
-        Module module2= getModule(9);
+        Module module2= getModule(39L);
 
-        deleteModule(module2);
-        Module module= getModule(10);
+       deleteModule(module2);
+    //    Module module= getModule(10L);
 
-        Module moduleToBeUpdated=new Module().setName("mod#1").setDescription("science");
-        Module moduleToBeReplaced=getModule(moduleToBeUpdated.getId());
-        updateModule(moduleToBeUpdated);
+     //   Module moduleToBeUpdated=new Module().setName("mod#1").setDescription("science");
+   //     Module moduleToBeReplaced=getModule(moduleToBeUpdated.getId());
+       // updateModule(moduleToBeUpdated);
 
 
     }
@@ -37,7 +35,7 @@ public class ModuleApplication {
     }
 
 
-    private static Module getModule(Integer id) {
+    private static Module getModule(Long id) {
         Optional<Module> module = moduleDao.get(id);
         return module.orElseGet(
                 () -> new Module());

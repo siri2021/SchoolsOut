@@ -1,7 +1,7 @@
 package be.intecbrussel.student;
 
 import be.intecbrussel.student.model.User;
-import be.intecbrussel.student.service.UserDao;
+import be.intecbrussel.student.repos.UserDao;
 
 import java.util.Optional;
 
@@ -12,12 +12,12 @@ public class UserApplication {
         // standard constructors
 
         public static void main(String[] args) {
-           // User user1 = getUser("diya");
-            //System.out.println(user1);
-            //updateUser(user1);
+           User user1 = getUser("tanmay");
+            System.out.println(user1);
+          //  updateUser(user1);
             //saveUser(new User().setLogin("pavani").setActive(false).setPassword("chandu"));
 
-            deleteUser(getUser("pearl2"));
+            deleteUser(getUser("diana"));
            //getAllUsers().forEach(user -> System.out.println(user.getName()));
         }
     public static User getUser(String id) {
@@ -31,7 +31,7 @@ public class UserApplication {
 
         public static void updateUser(User userToBeUpdated) {
             //find User TO BE replaced
-            User UserToBeReplaced=getUser("shushan");
+            User UserToBeReplaced=getUser(userToBeUpdated.getLogin());
             User newUser=new User().setLogin("prasanna").setActive(false).setPassword("vinod");
             userDao.update(newUser);
         }

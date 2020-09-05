@@ -5,20 +5,21 @@ import java.util.List;
 @Entity
 @Table(name = "module")
 public class Module {
-    @Id
+
+
+     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     private String name;
     @Lob
     private String description ;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     public Course course ;
-
 
     @OneToMany(mappedBy = "module")
     private List<Exam> exams ;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -61,5 +62,14 @@ public class Module {
         return this;
     }
 
-
+    @Override
+    public String toString() {
+        return "Module{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", course=" + course +
+                ", exams=" + exams +
+                '}';
+    }
 }

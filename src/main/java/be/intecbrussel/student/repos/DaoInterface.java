@@ -1,11 +1,11 @@
-package be.intecbrussel.student.service;
+package be.intecbrussel.student.repos;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface DaoInterface<T>{
     Optional<T> get(String s);
-    Optional<T> get(Integer id);
+    Optional<T> get(Long id);
 
     List<T> getAll();
 

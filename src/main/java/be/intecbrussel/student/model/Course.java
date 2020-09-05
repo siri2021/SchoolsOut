@@ -8,17 +8,18 @@ import java.util.List;
 public class Course {
     @Id
     @GeneratedValue()
-    private Integer id ;
+    private Long id ;
     private  String name;
     @Lob
     private String description ;
     private String code;
    private String imageURL ;
    private Boolean active;
-    @OneToMany(mappedBy = "course")
+
+    @OneToMany
     private List<Module> modules;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
     public String getName() {

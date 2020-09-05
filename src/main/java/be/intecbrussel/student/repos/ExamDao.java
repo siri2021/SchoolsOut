@@ -1,28 +1,28 @@
-package be.intecbrussel.student.service;
+package be.intecbrussel.student.repos;
 
-import be.intecbrussel.student.model.User;
-import be.intecbrussel.student.model.Module;
+
+import be.intecbrussel.student.model.Exam;
+
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import java.util.List;
 import java.util.Optional;
 
-
-public class ModuleDao implements DaoInterface<Module> {
+public class ExamDao implements DaoInterface<Exam> {
     EntityManagerFactory emf=EntityFactoryGenerator.generator();
 
     @Override
     public Optional get(String s) {
         EntityManager entityManager=emf.createEntityManager();
-        return Optional.ofNullable(entityManager.find(Module.class, s));
-
+        return Optional.ofNullable(entityManager.find(Exam.class, s));
     }
 
     @Override
-    public Optional get(Integer id) {
+    public Optional get(Long id) {
         EntityManager entityManager=emf.createEntityManager();
-        return Optional.ofNullable(entityManager.find(Module.class, id ));
+        return Optional.ofNullable(entityManager.find(Exam.class, id ));
 
     }
 
@@ -35,31 +35,35 @@ public class ModuleDao implements DaoInterface<Module> {
 
 
     @Override
-    public void save(Module module) {
+    public void save(Exam exam) {
         EntityManager em=emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.persist(module);
+        em.persist(exam);
         et.commit();
     }
 
     @Override
-    public void update(Module module){
+    public void update( Exam exam){
         EntityManager em=emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.merge(module);
+        em.merge(exam);
         et.commit();
     }
 
     @Override
-    public void delete(Module module) {
+    public void delete(Exam exam) {
         EntityManager em=emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.remove(em.contains(module) ? module : em.merge(module));
+        em.remove(em.contains(exam) ? exam : em.merge(exam));
         et.commit();
     }
+
+
+
+
 
 
 

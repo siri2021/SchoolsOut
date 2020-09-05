@@ -12,8 +12,7 @@ public class User {
     private String login ;
     private String password;
     private boolean isActive;
-    @OneToOne
-    private Person person;
+
 
     @Override
     public String toString() {
@@ -22,8 +21,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", isActive=" + isActive +
 
-                ", person=" + person +
-                "}";
+                 "}";
     }
 
 
@@ -56,14 +54,7 @@ public class User {
 
     }
 
-    public Person getPerson() {
-        return person;
-    }
 
-    public User setPerson(Person person) {
-        this.person = person;
-        return this;
-    }
 
 }
 

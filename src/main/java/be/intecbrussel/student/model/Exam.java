@@ -2,23 +2,47 @@ package be.intecbrussel.student.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "exam")
 public class Exam {
+
     @Id
     @GeneratedValue
-    private Integer id ;
+    private Long id ;
     private String name ;
     @Lob
     private String description;
     private LocalDate date ;
     private int weight ;
     private int total ;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Module module ;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Exam examGroup;
 
-    public Integer getId() {
+    @Override
+    public String toString() {
+        return "Exam{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", weight=" + weight +
+                ", total=" + total +
+                ", module=" + module +
+                ", examGroup=" + examGroup +
+                ", subexams=" + subexams +
+                '}';
+    }
+
+    @OneToMany(mappedBy = "examGroup")
+    private List<Exam> subexams;
+
+
+
+    public Long getId() {
         return id;
     }
     public String getName() {
@@ -59,6 +83,17 @@ public class Exam {
 
     public int getTotal() {
         return total;
+    }
+
+    public Exam setExamGroup(Exam examGroup) {
+
+        this.examGroup = examGroup;
+        return this;
+    }
+
+    public Exam setSubexams(List<Exam> subexams) {
+        this.subexams = subexams;
+        return this;
     }
 
     public Exam setTotal(int total) {

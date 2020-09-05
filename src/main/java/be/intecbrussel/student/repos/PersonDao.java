@@ -1,8 +1,6 @@
-package be.intecbrussel.student.service;
+package be.intecbrussel.student.repos;
 
-
-import be.intecbrussel.student.model.Exam;
-
+import be.intecbrussel.student.model.Person;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,19 +8,21 @@ import javax.persistence.EntityTransaction;
 import java.util.List;
 import java.util.Optional;
 
-public class ExamDao implements DaoInterface<Exam> {
+public class PersonDao implements DaoInterface<Person> {
+
     EntityManagerFactory emf=EntityFactoryGenerator.generator();
 
     @Override
     public Optional get(String s) {
         EntityManager entityManager=emf.createEntityManager();
-        return Optional.ofNullable(entityManager.find(Exam.class, s));
+        return Optional.ofNullable(entityManager.find(Person.class, s));
+
     }
 
     @Override
-    public Optional get(Integer id) {
+    public Optional get(Long id) {
         EntityManager entityManager=emf.createEntityManager();
-        return Optional.ofNullable(entityManager.find(Exam.class, id ));
+        return Optional.ofNullable(entityManager.find(Person.class, id ));
 
     }
 
@@ -35,35 +35,32 @@ public class ExamDao implements DaoInterface<Exam> {
 
 
     @Override
-    public void save(Exam exam) {
+    public void save(Person person) {
+
         EntityManager em=emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.persist(exam);
+        em.persist(person);
         et.commit();
     }
 
     @Override
-    public void update( Exam exam){
+    public void update( Person person){
         EntityManager em=emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.merge(exam);
+        em.merge(person);
         et.commit();
     }
 
     @Override
-    public void delete(Exam exam) {
+    public void delete(Person person) {
         EntityManager em=emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        em.remove(em.contains(exam) ? exam : em.merge(exam));
+        em.remove(em.contains(person) ? person : em.merge(person));
         et.commit();
     }
-
-
-
-
 
 
 
